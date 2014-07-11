@@ -11,7 +11,7 @@ public class Algo {
 		Calendar date2 = Calendar.getInstance();
 
 		int[] A = new int[] { 4, 1, 3, 5, 6, 2 };
-		int[] ar = new int[] { 1, 6, 2, 4,3,5};
+		int[] ar = new int[] { 9, 8, 6, 7, 3, 5, 4, 1, 2 };
 		int see = triangle(4);
 		System.out.println(see);
 		ArrayList<String> sejj = monthList(date1, date2);
@@ -122,7 +122,7 @@ public class Algo {
 		}
 
 	}
-	
+
 	public static void insertionSortPart2(int[] ar) {
 		// Fill up the code for the required logic here
 		int value;
@@ -130,20 +130,24 @@ public class Algo {
 		for (int i = 1; i < ar.length; i++) {
 			value = ar[i];
 			prev = ar[i - 1];
-			 int cursor = i;
-		     int cursor2 = i-1;
-		     while (value < prev) {   
-		         ar[cursor - 1] = value;
-		         ar[cursor] = prev;
-		         value = ar[--cursor];
-		         prev = ar[--cursor2];
+			int cursor = i;
+			while (value < prev) {
+				ar[cursor - 1] = value;
+				ar[cursor] = prev;
+				value = ar[--cursor];
+				if (cursor == 0) {
+					prev = ar[cursor];
+				}
+				else prev = ar[cursor - 1];
 			}
 			printArray(ar);
-
 		}
+		
 
 	}
+
 }
+
 /*
  * HACKERRANK
  * 
