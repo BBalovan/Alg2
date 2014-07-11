@@ -9,9 +9,9 @@ public class Algo {
 		Calendar date1 = Calendar.getInstance();
 		date1.set(2010, 10, 12);
 		Calendar date2 = Calendar.getInstance();
-		
-		int[] A = new int[] {4, 1, 3, 5, 6, 2};
 
+		int[] A = new int[] { 4, 1, 3, 5, 6, 2 };
+		int[] ar = new int[] { 1, 6, 2, 4,3,5};
 		int see = triangle(4);
 		System.out.println(see);
 		ArrayList<String> sejj = monthList(date1, date2);
@@ -19,7 +19,8 @@ public class Algo {
 		insertionSort(A);
 		int na = hackerrankLoveLetter("sasmadara");
 		System.out.println(na);
-
+		// insertIntoSorted(ar);
+		insertionSortPart2(ar);
 	}
 
 	public static int triangle(int input) {
@@ -61,7 +62,7 @@ public class Algo {
 		char karEleje = 'a';
 		char karVege = 'a';
 
-		for (int i = 0; i < karList.size()/2; i++) {
+		for (int i = 0; i < karList.size() / 2; i++) {
 
 			karEleje = karList.get(i);
 			karVege = karList.get(karList.size() - 1 - i);
@@ -75,7 +76,7 @@ public class Algo {
 			} else {
 				while (karVege != karEleje) {
 					karVege--;
-					karList.set(karList.size()-i-1, karVege);
+					karList.set(karList.size() - i - 1, karVege);
 					ans++;
 				}
 			}
@@ -83,28 +84,66 @@ public class Algo {
 		return ans;
 	}
 
-    public static void insertionSort(int[] A){
-  for(int i = 1; i < A.length; i++){
-    int value = A[i];
-    int j = i - 1;
-    while(j >= 0 && A[j] > value){
-      A[j + 1] = A[j];
-      j = j - 1;
-    }
-    A[j + 1] = value;
-  }
-        
-        printArray(A);
-}
+	public static void insertionSort(int[] A) {
+		for (int i = 1; i < A.length; i++) {
+			int value = A[i];
+			int j = i - 1;
+			while (j >= 0 && A[j] > value) {
+				A[j + 1] = A[j];
+				j = j - 1;
+			}
+			A[j + 1] = value;
+		}
 
-    
-    static void printArray(int[] ar) {
-         for(int n: ar){
-            System.out.print(n+" ");
-         }
-      }
-}
+		printArray(A);
+	}
 
+	static void printArray(int[] ar) {
+		for (int n : ar) {
+			System.out.print(n + " ");
+		}
+	}
+
+	public static void insertIntoSorted(int[] ar) {
+		// Fill up this function
+		int x = ar[ar.length - 1];
+
+		for (int i = 1; i < ar.length; i++) {
+			int prev = ar[ar.length - 1 - i];
+
+			if (x < prev) {
+				ar[ar.length - i] = prev;
+				printArray(ar);
+
+			} else {
+				ar[ar.length - i] = x;
+				printArray(ar);
+			}
+		}
+
+	}
+	
+	public static void insertionSortPart2(int[] ar) {
+		// Fill up the code for the required logic here
+		int value;
+		int prev;
+		for (int i = 1; i < ar.length; i++) {
+			value = ar[i];
+			prev = ar[i - 1];
+			 int cursor = i;
+		     int cursor2 = i-1;
+		     while (value < prev) {   
+		         ar[cursor - 1] = value;
+		         ar[cursor] = prev;
+		         value = ar[--cursor];
+		         prev = ar[--cursor2];
+			}
+			printArray(ar);
+
+		}
+
+	}
+}
 /*
  * HACKERRANK
  * 
@@ -130,6 +169,6 @@ public class Algo {
  * 
  * if (karEleje > karVege) { while (karEleje != karVege) { karEleje--;
  * karList.set(i, karEleje); ans++; } } else { while (karVege != karEleje) {
- * karVege--; karList.set(karList.size()-i-1, karVege); ans++; } } }
- * return ans; } }
+ * karVege--; karList.set(karList.size()-i-1, karVege); ans++; } } } return ans;
+ * } }
  */
