@@ -11,7 +11,7 @@ public class Algo {
 		Calendar date2 = Calendar.getInstance();
 
 		int[] A = new int[] { 4, 1, 3, 5, 6, 2 };
-		int[] ar = new int[] { 9, 8, 6, 7, 3, 5, 4, 1, 2 };
+		int[] ar = new int[] { 0, 0, 1, 2, 2, 2, 3, 5, 10, 99 };
 		int see = triangle(4);
 		System.out.println(see);
 		ArrayList<String> sejj = monthList(date1, date2);
@@ -20,7 +20,8 @@ public class Algo {
 		int na = hackerrankLoveLetter("sasmadara");
 		System.out.println(na);
 		// insertIntoSorted(ar);
-		insertionSortPart2(ar);
+		// insertionSortPart2(ar);
+		countingSort1(ar);
 	}
 
 	public static int triangle(int input) {
@@ -137,15 +138,28 @@ public class Algo {
 				value = ar[--cursor];
 				if (cursor == 0) {
 					prev = ar[cursor];
-				}
-				else prev = ar[cursor - 1];
+				} else
+					prev = ar[cursor - 1];
 			}
 			printArray(ar);
 		}
-		
 
 	}
 
+	public static void countingSort1(int[] ar) {
+		int ans = 0;
+
+		for (int j = 0; j < 100; j++) {
+			ans = 0;
+			for (int i = 0; i < ar.length; i++) {
+				if (ar[i] == j)
+					ans++;
+			}
+
+			System.out.print(ans + " ");
+
+		}
+	}
 }
 
 /*
