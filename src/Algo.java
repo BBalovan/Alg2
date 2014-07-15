@@ -1,5 +1,6 @@
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class Algo {
@@ -12,16 +13,18 @@ public class Algo {
 
 		int[] A = new int[] { 4, 1, 3, 5, 6, 2 };
 		int[] ar = new int[] { 0, 0, 1, 2, 2, 2, 3, 5, 10, 99 };
-		int see = triangle(4);
-		System.out.println(see);
-		ArrayList<String> sejj = monthList(date1, date2);
-		System.out.println(sejj);
-		insertionSort(A);
-		int na = hackerrankLoveLetter("sasmadara");
-		System.out.println(na);
+		// int see = triangle(4);
+		// System.out.println(see);
+		// ArrayList<String> sejj = monthList(date1, date2);
+		// System.out.println(sejj);
+		// insertionSort(A);
+		// int na = hackerrankLoveLetter("sasmadara");
+		// System.out.println(na);
 		// insertIntoSorted(ar);
 		// insertionSortPart2(ar);
-		countingSort1(ar);
+		// countingSort1(ar);
+		countingSort2(ar);
+
 	}
 
 	public static int triangle(int input) {
@@ -159,6 +162,11 @@ public class Algo {
 			System.out.print(ans + " ");
 
 		}
+	}
+
+	public static void countingSort2(int[] ar) {
+		Arrays.sort(ar);
+		printArray(ar);
 	}
 }
 
