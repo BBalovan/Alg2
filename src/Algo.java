@@ -13,6 +13,7 @@ public class Algo {
 
 		int[] A = new int[] { 4, 1, 3, 5, 6, 2 };
 		int[] ar = new int[] { 0, 0, 1, 2, 2, 2, 3, 5, 10, 99 };
+
 		// int see = triangle(4);
 		// System.out.println(see);
 		// ArrayList<String> sejj = monthList(date1, date2);
@@ -23,8 +24,9 @@ public class Algo {
 		// insertIntoSorted(ar);
 		// insertionSortPart2(ar);
 		// countingSort1(ar);
-		countingSort2(ar);
-
+		// countingSort2(ar);
+		runningTimeOfAlgs(ar);
+		//countingSort3(ar);
 	}
 
 	public static int triangle(int input) {
@@ -167,6 +169,44 @@ public class Algo {
 	public static void countingSort2(int[] ar) {
 		Arrays.sort(ar);
 		printArray(ar);
+	}
+
+	public static void countingSort3(int[] ar) {
+		int ans = 0;
+		for (int i = 0; i < 100; i++) {
+			for (int j = 0; j < ar.length; j++) {
+				if (ar[j] <= i) {
+					ans++;
+				}
+			}
+			System.out.print(ans + " ");
+			ans = 0;
+		}
+	}
+	
+	public static void runningTimeOfAlgs(int[] ar){
+
+		int value;
+		int prev;
+        int ans = 0;
+		for (int i = 1; i < ar.length; i++) {
+			value = ar[i];
+			prev = ar[i - 1];
+			int cursor = i;
+			while (value < prev) {
+				ar[cursor - 1] = value;
+				ar[cursor] = prev;
+				value = ar[--cursor];
+                ans++;
+				if (cursor == 0) {
+					prev = ar[cursor];
+                   
+				}
+				else prev = ar[cursor - 1];
+			}
+		}
+		System.out.print(ans);
+
 	}
 }
 
