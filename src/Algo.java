@@ -12,7 +12,7 @@ public class Algo {
 		Calendar date2 = Calendar.getInstance();
 
 		int[] A = new int[] { 4, 1, 3, 5, 6, 2 };
-		int[] ar = new int[] { 0, 0, 1, 2, 2, 2, 3, 5, 10, 99 };
+		String[] ar = new String[] {"4 that","3 be","0 to","1 be","5 question","1 or","2 not","4 is","2 to","4 the" };
 
 		// int see = triangle(4);
 		// System.out.println(see);
@@ -25,8 +25,8 @@ public class Algo {
 		// insertionSortPart2(ar);
 		// countingSort1(ar);
 		// countingSort2(ar);
-		runningTimeOfAlgs(ar);
-		//countingSort3(ar);
+		//runningTimeOfAlgs(ar);
+		countingSort3(ar);
 	}
 
 	public static int triangle(int input) {
@@ -171,24 +171,51 @@ public class Algo {
 		printArray(ar);
 	}
 
-	public static void countingSort3(int[] ar) {
+	public static void countingSort3(String[] ar) {
 		int ans = 0;
+		ArrayList<Integer> numList = new ArrayList<Integer>();
+
+		String[] parts;
+		String part1;
+		int intPart;
+		boolean res = false;
+
+		for (String element : ar) {
+			parts = element.split(" ");
+			part1 = parts[0];
+            res = tryParseInt(part1);
+            
+            if (res == true) {
+			intPart = Integer.parseInt(part1);
+			numList.add(intPart);
+            }
+        }
 		for (int i = 0; i < 100; i++) {
-			for (int j = 0; j < ar.length; j++) {
-				if (ar[j] <= i) {
+			for (int element : numList) {
+				if (i >= element) {
 					ans++;
 				}
+				if (ans == 0) break;
 			}
+
 			System.out.print(ans + " ");
 			ans = 0;
 		}
 	}
-	
-	public static void runningTimeOfAlgs(int[] ar){
+    
+    public static boolean tryParseInt(String value)  {  
+     try  {  
+         Integer.parseInt(value);  
+         return true;  
+      } catch(NumberFormatException nfe)  {  
+          return false;  
+      }  
+}
+	public static void runningTimeOfAlgs(int[] ar) {
 
 		int value;
 		int prev;
-        int ans = 0;
+		int ans = 0;
 		for (int i = 1; i < ar.length; i++) {
 			value = ar[i];
 			prev = ar[i - 1];
@@ -197,12 +224,12 @@ public class Algo {
 				ar[cursor - 1] = value;
 				ar[cursor] = prev;
 				value = ar[--cursor];
-                ans++;
+				ans++;
 				if (cursor == 0) {
 					prev = ar[cursor];
-                   
-				}
-				else prev = ar[cursor - 1];
+
+				} else
+					prev = ar[cursor - 1];
 			}
 		}
 		System.out.print(ans);
